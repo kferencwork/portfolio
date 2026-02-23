@@ -1,0 +1,555 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Képernyő-fix */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Fixed navbar */
+
+nav {
+  width: 300px;
+  height: 100px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 25px 25px 25px 25px;
+
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  gap: 20px;
+
+  position: fixed;
+  top: 20px;
+  z-index: 1000;
+
+  overflow: visible;
+}
+
+nav a {
+  width: 64px;
+  height: 64px;
+}
+
+nav a svg {
+  width: 100%;
+  height: 100%;
+
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+nav a #img1 path {
+  fill: #ffffff;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+
+  transition: 0.5s ease;
+}
+
+nav a #img2 path {
+  fill: #ffffff;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+
+  transition: 0.5s ease;
+}
+
+nav a #img3 path {
+  fill: #ffffff;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+
+  transition: 0.5s ease;
+}
+
+nav a.active-0 #img1 path {
+  fill: #2ecc71;
+}
+
+nav a.active-1 #img2 path {
+  fill: #f1c40f;
+}
+
+nav a.active-2 #img3 path {
+  fill: #3498db;
+}
+
+/* 3 oldal globális beállítások */
+
+section {
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  z-index: 1;
+
+  padding-top: 145px;
+  padding-bottom: 20px;
+}
+
+/*                     */
+/* FŐOLDAL BEÁLLÍTÁSOK */
+/*                     */
+
+#fooldal {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(135deg, rgba(46, 204, 113, 1) 0%, rgba(44, 62, 80, 1) 100%);
+  background-size:
+    50px 50px,
+    50px 50px,
+    contain;
+  background-position: center;
+  background-attachment: scroll;
+
+  transition: background 0.5s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+#fooldal #ROLAM-DOBOZ {
+  width: 100%;
+  max-width: 400px;
+  height: 700px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+#fooldal #ROLAM-DOBOZ #CIM span {
+  font-size: 36px;
+  color: #2ecc71;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #ROLAM-DOBOZ #SZOVEG {
+  width: 100%;
+  max-width: 350px;
+  height: 490px;
+}
+
+#fooldal #ROLAM-DOBOZ #SZOVEG p {
+  font-size: 36px;
+  color: #ffffff;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #ROLAM-DOBOZ #GOMB {
+  width: 100%;
+  max-width: 350px;
+  height: 80px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  transition: 0.5s ease;
+}
+
+#fooldal #ROLAM-DOBOZ #GOMB a {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#fooldal #ROLAM-DOBOZ #GOMB #img {
+  width: 48px;
+  height: 48px;
+
+  background-image: url("./ikonok/oneletrajz-ikon-szines.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #ROLAM-DOBOZ #GOMB span {
+  font-size: 36px;
+  color: #f1c40f;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ {
+  width: 100%;
+  max-width: 400px;
+  height: 700px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #CIM span {
+  font-size: 36px;
+  color: #2ecc71;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK {
+  width: 100%;
+  max-width: 350px;
+  height: 490px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK .SOR {
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK .img {
+  width: 80px;
+  height: 80px;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img1 {
+  background-image: url("./logok/html-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img2 {
+  background-image: url("./logok/css-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img3 {
+  background-image: url("./logok/js-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img4 {
+  background-image: url("./logok/python-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img5 {
+  background-image: url("./logok/blender-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img6 {
+  background-image: url("./logok/figma-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img7 {
+  background-image: url("./logok/tinkercad-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img8 {
+  background-image: url("./logok/ciscopackettracer-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img9 {
+  background-image: url("./logok/office365-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img10 {
+  background-image: url("./logok/premierpro-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img11 {
+  background-image: url("./logok/aftereffects-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK #img12 {
+  background-image: url("./logok/photoshop-logo.png");
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #DOBOZOK .db {
+  width: 100px;
+  height: 100px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #GOMB {
+  width: 100%;
+  max-width: 350px;
+  height: 80px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  transition: 0.5s ease;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #GOMB a {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #GOMB #img {
+  width: 48px;
+  height: 48px;
+
+  background-image: url("./ikonok/projektek-ikon-szines.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #GOMB span {
+  font-size: 36px;
+  color: #3498db;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+/*                              */
+/* ÖNÉLETRAJZ OLDAL BEÁLLÍTÁSOK */
+/*                              */
+
+#oneletrajz {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(135deg, rgba(241, 196, 15, 1) 0%, rgba(44, 62, 80, 1) 100%);
+  background-size:
+    50px 50px,
+    50px 50px,
+    contain;
+  background-position: center;
+  background-attachment: scroll;
+
+  transition: background 0.5s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+#oneletrajz #ONELETRAJZ-MAGYAR {
+  width: 100%;
+  max-width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+#oneletrajz #ONELETRAJZ-ANGOL {
+  width: 100%;
+  max-width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+/*                             */
+/* PROJEKTEK OLDAL BEÁLLÍTÁSOK */
+/*                             */
+
+#projektek {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
+    linear-gradient(135deg, rgba(52, 152, 219, 1) 0%, rgba(44, 62, 80, 1) 100%);
+  background-size:
+    50px 50px,
+    50px 50px,
+    contain;
+  background-position: center;
+  background-attachment: scroll;
+
+  transition: background 0.5s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+#projektek #PROJEKT1-DOBOZ {
+  width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+#projektek #PROJEKT2-DOBOZ {
+  width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+#projektek #PROJEKT3-DOBOZ {
+  width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+#projektek #PROJEKT4-DOBOZ {
+  width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+#projektek #PROJEKT5-DOBOZ {
+  width: 600px;
+  height: 800px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(127, 140, 141, 0.5),
+    inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+}
+
+/*           */
+/* ANIMÁCIÓK */
+/*           */
+
+nav a #img1:hover path {
+  fill: #2ecc71;
+}
+
+nav a #img2:hover path {
+  fill: #f1c40f;
+}
+
+nav a #img3:hover path {
+  fill: #3498db;
+}
+
+#fooldal #ROLAM-DOBOZ #GOMB:hover {
+  background: rgba(241, 196, 15, 0.25);
+  border: 3px solid rgba(241, 196, 15, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(241, 196, 15, 0.5),
+    inset 0px 5px 20px 5px rgba(241, 196, 15, 0.5);
+  border-radius: 0px;
+}
+
+#fooldal #TECHNOLOGIAK-DOBOZ #GOMB:hover {
+  background: rgba(52, 152, 219, 0.25);
+  border: 3px solid rgba(52, 152, 219, 0.5);
+  box-shadow:
+    0px 0px 20px rgba(52, 152, 219, 0.5),
+    inset 0px 5px 20px 5px rgba(52, 152, 219, 0.5);
+  border-radius: 0px;
+}
