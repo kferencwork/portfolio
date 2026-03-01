@@ -120,9 +120,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
-
-  flex-wrap: wrap;
+  gap: 50px;
 }
 
 /* rólam részleg */
