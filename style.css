@@ -358,7 +358,7 @@ section {
 
 #oneletrajz #DOBOZ #CIM {
   width: 100%;
-  height: 100px;
+  height: 80px;
 
   background: rgba(127, 140, 141, 0.25);
   border: 3px solid rgba(127, 140, 141, 0.5);
@@ -396,7 +396,7 @@ section {
 
 #oneletrajz #DOBOZ #GOMB {
   width: 100%;
-  height: 100px;
+  height: 80px;
 
   background: rgba(127, 140, 141, 0.25);
   border: 3px solid rgba(127, 140, 141, 0.5);
@@ -507,7 +507,7 @@ section {
 
 #projektek #DOBOZ #GOMB {
   width: 100%;
-  height: 100px;
+  height: 80px;
 
   background: rgba(127, 140, 141, 0.25);
   border: 3px solid rgba(127, 140, 141, 0.5);
