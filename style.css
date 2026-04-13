@@ -324,6 +324,46 @@ section {
   filter: drop-shadow(0px 5px 2.5px #000000);
 }
 
+/* önreflexió részleg */
+
+#fooldal #ONREFLEXIO-DOBOZ {
+  width: 400px;
+  height: 700px;
+
+  background: rgba(127, 140, 141, 0.25);
+  border: 3px solid rgba(127, 140, 141, 0.5);
+  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
+  border-radius: 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+#fooldal #ONREFLEXIO-DOBOZ #CIM span {
+  font-size: 36px;
+  color: #2ECC71;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
+#fooldal #ONREFLEXIO-DOBOZ #SZOVEG {
+  width: 350px;
+  height: 595px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#fooldal #ONREFLEXIO-DOBOZ #SZOVEG p {
+  font-size: 24px;
+  color: #ffffff;
+  filter: drop-shadow(0px 5px 2.5px #000000);
+}
+
 
 /* ÖNÉLETRAJZ KONFIGURÁCIÓ */
 
