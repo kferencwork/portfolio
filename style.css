@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
 :root {
     --color-1: #0C0C0F; /* Darkest, Background */
@@ -130,8 +130,9 @@ body.instant {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end; /* Align bottom */
+    align-items: center; /* Center horizontally initially */
+    padding: 30px;
     pointer-events: none;
 }
 
@@ -143,7 +144,20 @@ body.instant {
     text-align: center;
     color: #FFFFFF;
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    transition: opacity 0.2s ease 0.05s, transform 0.2s ease 0.05s; /* Faster return */
+}
+
+.card-title-hover {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    margin-bottom: 10px;
 }
 
 .card-hover-content {
@@ -154,11 +168,11 @@ body.instant {
     padding: 0 30px;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.4s ease;
+    transition: opacity 0.1s ease, transform 0.1s ease; /* Very fast fade out when leaving */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     color: #FFFFFF;
 }
 
@@ -167,6 +181,12 @@ body.instant {
     font-weight: 300;
     margin-bottom: 20px;
     text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    color: rgba(255, 255, 255, 0.85); /* Enyhén halványabb, hogy a bold jobban üssön */
+}
+
+.card-hover-content b {
+    font-weight: 800; /* Extra vastag */
+    color: #FFFFFF; /* Tiszta fehér */
 }
 
 .btn-open {
@@ -184,11 +204,13 @@ body.instant {
 .card:hover .card-title {
     opacity: 0;
     transform: translateY(-20px);
+    transition: opacity 0.1s ease, transform 0.1s ease; /* Very fast fade out on hover */
 }
 
 .card:hover .card-hover-content {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 0.2s ease 0.05s, transform 0.2s ease 0.05s; /* Fast and snappy fade in */
 }
 
 #custom-cursor {
@@ -446,9 +468,12 @@ html {
     }
     
     .card-title, .card:hover .card-title {
+        display: none !important; /* Hide original center title entirely on mobile */
+    }
+    
+    .card-title-hover {
         font-size: 2rem !important;
-        opacity: 1 !important;
-        transform: translateY(-5px) !important;
+        margin-bottom: 15px !important;
     }
     
     .card-hover-content, .card:hover .card-hover-content {
