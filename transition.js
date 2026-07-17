@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Parse hash on load
     function getHash() {
         let h = window.location.hash.substring(1);
-        if (!pages[h]) h = 'index';
+        if (!pages[h]) {
+            h = 'index';
+            history.replaceState(null, null, '#index');
+        }
         return h;
     }
 
