@@ -105,20 +105,20 @@ body.instant {
 .card-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.3);
-    transition: background 0.4s ease;
+    background-color: rgba(0,0,0,0.3);
+    transition: background-color 0.4s ease;
     z-index: 0;
 }
 
-.card:hover .card-overlay {
-    background: rgba(0,0,0,0.85);
+.card:hover .card-overlay, .card.is-active .card-overlay {
+    background-color: rgba(0,0,0,0.85);
 }
 
-.card:hover .card-image img {
+.card:hover .card-image img, .card.is-active .card-image img {
     transform: scale(1.1);
 }
 
-.card:hover {
+.card:hover, .card.is-active {
     border-color: var(--color-4);
     box-shadow: 0 20px 40px rgba(12, 12, 15, 0.8);
 }
@@ -201,13 +201,13 @@ body.instant {
     box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
 }
 
-.card:hover .card-title {
+.card:hover .card-title, .card.is-active .card-title {
     opacity: 0;
     transform: translateY(-20px);
     transition: opacity 0.1s ease, transform 0.1s ease; /* Very fast fade out on hover */
 }
 
-.card:hover .card-hover-content {
+.card:hover .card-hover-content, .card.is-active .card-hover-content {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.2s ease 0.05s, transform 0.2s ease 0.05s; /* Fast and snappy fade in */
@@ -217,7 +217,7 @@ body.instant {
     position: fixed;
     top: 0;
     left: 0;
-    pointer-events: none;
+    pointer-events: none !important;
     z-index: 9999;
     color: #FFFFFF;
     font-weight: 700;

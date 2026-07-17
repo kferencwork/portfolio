@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetPage = getHash();
         if (targetPage === currentPage) return; // Prevent double trigger
 
+        // Prevent further clicks during transition
+        document.body.style.pointerEvents = 'none';
+
         // Fade out
         document.body.classList.remove('loaded');
 
@@ -73,6 +76,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentPage = targetPage;
             document.body.classList.add('loaded');
+            
+            // Re-enable clicks
+            document.body.style.pointerEvents = '';
+
+            // Remove hover lock from cards
+            if (typeof cards !== 'undefined') {
+                cards.forEach(c => c.classList.remove('is-active'));
+            } else {
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('is-active'));
+            }
         }, 500);
     });
 
@@ -117,6 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             card.addEventListener('mouseleave', () => {
+                customCursor.style.opacity = '0';
+                isCursorVisible = false;
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            });
+
+            card.addEventListener('click', () => {
+                card.classList.add('is-active');
                 customCursor.style.opacity = '0';
                 isCursorVisible = false;
                 if (animationFrameId) {
