@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pages = {
-        index: document.getElementById('page-index'),
+        fooldal: document.getElementById('page-fooldal'),
         plc: document.getElementById('page-plc'),
         robotika: document.getElementById('page-robotika'),
         vizsga: document.getElementById('page-vizsga')
     };
 
-    let currentPage = 'index';
+    let currentPage = 'fooldal';
 
     // Parse hash on load
     function getHash() {
         let h = window.location.hash.substring(1);
         if (!pages[h]) {
-            h = 'index';
-            history.replaceState(null, null, '#index');
+            h = 'fooldal';
+            history.replaceState(null, null, '#fooldal');
         }
         return h;
     }
