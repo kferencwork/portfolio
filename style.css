@@ -1,585 +1,481 @@
-/* ==================================================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
 
-/* =============== */
-/*  GLOBAL KONFIG  */
-/* =============== */
+:root {
+    --color-1: #0C0C0F; /* Darkest, Background */
+    --color-2: #18181A; /* Cards/Containers */
+    --color-3: #29292B; /* Borders/Hover effects */
+    --color-4: #38383A; /* Secondary Text / Elements */
+    --color-5: #4C4C4E; /* Primary Text */
+}
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+html {
+    scroll-behavior: smooth;
+    background-color: #000000;
+}
 
 * {
-  margin: 0;
-  padding: 0;
-
-  box-sizing: border-box;
-
-  user-select: none;
-  -webkit-user-drag: none;
-
-  font-family: Roboto;
-  font-weight: 500;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-a {
-  text-decoration: none;
+img, a {
+    -webkit-user-drag: none;
+    user-drag: none;
 }
 
-html,
 body {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--color-1);
+    color: var(--color-5);
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-/* ==================================================================================================== */
-
-/* =============== */
-/*  NAVBAR KONFIG  */
-/* =============== */
-
-nav {
-  width: 300px;
-  height: 100px;
-
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-
-  justify-self: center;
-  align-self: center;
-  position: fixed;
-  top: 0;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px 0px 25px 25px;
-
-  z-index: 1;
+body.loaded {
+    opacity: 1;
 }
 
-nav svg {
-  width: 64px;
-  height: 64px;
-  color: #ffffff;
-  filter: drop-shadow(0px 5px 2.5px #000000);
-
-  transition: color 0.5s ease;
+body.instant {
+    transition: none !important;
+    opacity: 1 !important;
 }
 
-#fooldal_ikon:hover {
-  color: #2ECC71;
+/* Home Page */
+#page-index {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-#oneletrajz_ikon:hover {
-  color: #F1C40F;
+.card-container {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    max-width: 1560px; /* 3 * 500 + 2 * 30 */
+    height: 100%;
+    max-height: 700px;
+    justify-content: center;
+    align-items: center;
 }
 
-#projektek_ikon:hover {
-  color: #3498DB;
+.card {
+    flex: 1;
+    max-width: 500px;
+    height: 100%;
+    max-height: 700px;
+    background-color: var(--color-2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-5);
+    display: block;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 2px solid var(--color-3);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
 }
 
-.fooldal_colored {
-  color: #2ECC71;
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
-.oneletrajz_colored {
-  color: #F1C40F;
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-.projektek_colored {
-  color: #3498DB;
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.4s ease;
+    z-index: 0;
 }
 
-/* ==================================================================================================== */
-
-/* ================ */
-/*  SECTION KONFIG  */
-/* ================ */
-
-section {
-  min-height: 100dvh;
-
-  padding-top: 120px;
+.card:hover .card-overlay {
+    background: rgba(0,0,0,0.85);
 }
 
-/* === FŐOLDAL KONFIGURÁCIÓ === */
-
-#fooldal {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(135deg, rgba(46, 204, 113, 1) 0%, rgba(44, 62, 80, 1) 100%);
-  background-size:
-    50px 50px,
-    50px 50px,
-    contain;
-  background-position: center;
-  background-attachment: scroll;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-
-  flex-wrap: wrap;
+.card:hover .card-image img {
+    transform: scale(1.1);
 }
 
-/* rólam részleg */
-
-#fooldal #ROLAM-DOBOZ {
-  width: 400px;
-  height: 700px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+.card:hover {
+    border-color: var(--color-4);
+    box-shadow: 0 20px 40px rgba(12, 12, 15, 0.8);
 }
 
-#fooldal #ROLAM-DOBOZ #CIM span {
-  font-size: 36px;
-  color: #2ECC71;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+.card-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
-#fooldal #ROLAM-DOBOZ #SZOVEG {
-  width: 350px;
-  height: 490px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+.card-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-#fooldal #ROLAM-DOBOZ #SZOVEG p {
-  font-size: 36px;
-  color: #ffffff;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+.card-hover-content {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
 }
 
-#fooldal #ROLAM-DOBOZ #GOMB {
-  width: 350px;
-  height: 80px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
+.card-hover-content p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
-#fooldal #ROLAM-DOBOZ #GOMB:hover {
-  background: rgba(241, 196, 15, 0.25);
-  border: 3px solid rgba(241, 196, 15, 0.5);
-  box-shadow: 0px 0px 20px rgba(241, 196, 15, 0.5), inset 0px 5px 20px 5px rgba(241, 196, 15, 0.5);
-  border-radius: 0px;
+.btn-open {
+    display: none;
+    padding: 12px 24px;
+    background-color: #E67E22;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
 }
 
-#fooldal #ROLAM-DOBOZ #GOMB svg {
-  width: 48px;
-  height: 48px;
-
-  color: #F1C40F;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+.card:hover .card-title {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
-#fooldal #ROLAM-DOBOZ #GOMB span {
-  font-size: 36px;
-  color: #F1C40F;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+.card:hover .card-hover-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* technológiák részleg */
-
-#fooldal #TECHNOLOGIAK-DOBOZ {
-  width: 400px;
-  height: 700px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    will-change: transform, opacity;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #CIM span {
-  font-size: 36px;
-  color: #2ECC71;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+/* Sub pages */
+#page-plc, #page-robotika, #page-vizsga {
+    min-height: 100vh;
+    padding: 0;
+    flex-direction: column;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG {
-  width: 350px;
-  height: 490px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+.content-split {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100vh;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG .SOR {
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.pdf-container, .video-container {
+    flex: 1;
+    background-color: var(--color-1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG .db {
-  width: 100px;
-  height: 100px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: 0.5s ease;
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG .db:hover {
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 1);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 1), inset 0px 5px 20px 5px rgba(127, 140, 141, 1);
-  border-radius: 0px;
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-1);
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG .img {
-  width: 80px;
-  height: 80px;
-
-  filter: drop-shadow(0px 5px 2.5px #000000);
-
-  transition: 0.5s ease;
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #SZOVEG .img:hover {
-  filter: drop-shadow(0px 5px 3.5px #000000);
+/* Custom Scrollbar */
+html {
+    scroll-behavior: smooth;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #GOMB {
-  width: 350px;
-  height: 80px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #GOMB:hover {
-  background: rgba(52, 152, 219, 0.25);
-  border: 3px solid rgba(52, 152, 219, 0.5);
-  box-shadow: 0px 0px 20px rgba(52, 152, 219, 0.5), inset 0px 5px 20px 5px rgba(52, 152, 219, 0.5);
-  border-radius: 0px;
+::-webkit-scrollbar-track {
+    background: var(--color-1);
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #GOMB svg {
-  width: 48px;
-  height: 48px;
-
-  color: #3498DB;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-3);
+    border-radius: 4px;
+    border: 3px solid var(--color-1);
 }
 
-#fooldal #TECHNOLOGIAK-DOBOZ #GOMB span {
-  font-size: 36px;
-  color: #3498DB;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-4);
 }
 
-
-/* ÖNÉLETRAJZ KONFIGURÁCIÓ */
-
-#oneletrajz { 
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(135deg, rgba(241, 196, 15, 1) 0%, rgba(44, 62, 80, 1) 100%);
-  background-size:
-    50px 50px,
-    50px 50px,
-    contain;
-  background-position: center;
-  background-attachment: scroll;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-
-  flex-wrap: wrap;
+/* Back Button */
+.icon-back-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+    background-color: #323639;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    z-index: 100;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
 }
 
-#oneletrajz #DOBOZ {
-  width: 450px;
-  height: 800px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+.icon-back-btn:hover {
+    background-color: #424649;
 }
 
-#oneletrajz #DOBOZ #CIM {
-  width: 100%;
-  height: 100px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
+.icon-back-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
-#oneletrajz #DOBOZ #CIM:hover {
-  background: rgba(241, 196, 15, 0.25);
-  border: 3px solid rgba(241, 196, 15, 0.5);
-  box-shadow: 0px 0px 20px rgba(241, 196, 15, 0.5), inset 0px 5px 20px 5px rgba(241, 196, 15, 0.5);
-  border-radius: 0px;
+/* Custom PDF Viewer */
+.custom-pdf-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: var(--color-2);
+    display: flex;
+    flex-direction: column;
 }
 
-#oneletrajz #DOBOZ #CIM span {
-  font-size: 36px;
-  color: #F1C40F;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+#pdf-render-area {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background-color: var(--color-1);
 }
 
-#oneletrajz #DOBOZ img {
-  width: 100%;
-  height: 600px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
+#pdf-render-area canvas {
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    transition: width 0.3s ease, height 0.3s ease;
 }
 
-#oneletrajz #DOBOZ #GOMB {
-  width: 100%;
-  height: 100px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
+.custom-icon-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-3);
+    color: #FFFFFF;
+    border: 2px solid var(--color-4);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-#oneletrajz #DOBOZ #GOMB:hover {
-  background: rgba(241, 196, 15, 0.25);
-  border: 3px solid rgba(241, 196, 15, 0.5);
-  box-shadow: 0px 0px 20px rgba(241, 196, 15, 0.5), inset 0px 5px 20px 5px rgba(241, 196, 15, 0.5);
-  border-radius: 0px;
+.custom-icon-btn svg {
+    width: 24px;
+    height: 24px;
 }
 
-#oneletrajz #DOBOZ #GOMB svg {
-  width: 48px;
-  height: 48px;
-
-  color: #F1C40F;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+/* Gallery Page */
+.vizsga-main {
+    height: 100vh;
+    width: 100%;
+    padding: 8px 20px 20px 20px; /* 8px top matches back button */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
 }
 
-#oneletrajz #DOBOZ #GOMB span {
-  font-size: 36px;
-  color: #F1C40F;
-  filter: drop-shadow(0px 5px 2.5px #000000);
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    height: calc(100vh - 28px);
+    max-width: 1000px;
+    padding: 0;
 }
 
-/* PROJEKTEK KONFIGURÁCIÓ */
-
-#projektek {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.25) 2px, transparent 0px),
-    linear-gradient(135deg, rgba(52, 152, 219, 1) 0%, rgba(44, 62, 80, 1) 100%);
-  background-size:
-    50px 50px,
-    50px 50px,
-    contain;
-  background-position: center;
-  background-attachment: scroll;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-
-  flex-wrap: wrap;
+.gallery-item {
+    background-color: var(--color-2);
+    border: 1px solid var(--color-3);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    height: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
 }
 
-#projektek #DOBOZ {
-  width: 450px;
-  height: 800px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+.gallery-item:hover {
+    border-color: var(--color-4);
+    box-shadow: 0 20px 40px rgba(12, 12, 15, 0.8);
 }
 
-#projektek #DOBOZ #CIM {
-  width: 100%;
-  height: 100px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
+.gallery-item .placeholder-content {
+    color: var(--color-4);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-#projektek #DOBOZ #CIM:hover {
-  background: rgba(52, 152, 219, 0.25);
-  border: 3px solid rgba(52, 152, 219, 0.5);
-  box-shadow: 0px 0px 20px rgba(52, 152, 219, 0.5), inset 0px 5px 20px 5px rgba(52, 152, 219, 0.5);
-  border-radius: 0px;
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover img {
+    opacity: 0.9;
 }
 
 
-#projektek #DOBOZ #CIM span {
-  font-size: 36px;
-  color: #3498DB;
-  filter: drop-shadow(0px 5px 2.5px #000000);
-}
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    #page-index {
+        height: 100vh;
+        overflow: hidden;
+        padding: 15px;
+    }
+    .card-container {
+        flex-direction: column;
+        height: 100%;
+        max-height: none;
+        gap: 15px;
+    }
+    .card {
+        width: 100%;
+        height: auto;
+        flex: 1;
+    }
+    
+    /* Disable hover and show static mobile view */
+    .card-overlay, .card:hover .card-overlay {
+        background: rgba(0,0,0,0.6) !important;
+    }
+    .card-image img, .card:hover .card-image img {
+        transform: none !important;
+    }
+    .card:hover {
+        border-color: var(--color-3) !important;
+        box-shadow: none !important;
+    }
+    
+    .card-title, .card:hover .card-title {
+        font-size: 2rem !important;
+        opacity: 1 !important;
+        transform: translateY(-5px) !important;
+    }
+    
+    .card-hover-content, .card:hover .card-hover-content {
+        position: relative !important;
+        bottom: auto !important;
+        opacity: 1 !important;
+        transform: translateY(5px) !important;
+        padding: 0 !important;
+    }
+    
+    .card-hover-content p {
+        display: none !important;
+    }
+    
+    .btn-open {
+        display: inline-block !important;
+        padding: 8px 16px !important;
+        font-size: 0.9rem !important;
+        margin-top: 15px !important;
+    }
 
-#projektek #DOBOZ img {
-  width: 100%;
-  height: 600px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-}
-
-#projektek #DOBOZ #GOMB {
-  width: 100%;
-  height: 100px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  cursor: pointer;
-
-  transition: 0.5s ease;
-}
-
-#projektek #DOBOZ #GOMB:hover {
-  background: rgba(52, 152, 219, 0.25);
-  border: 3px solid rgba(52, 152, 219, 0.5);
-  box-shadow: 0px 0px 20px rgba(52, 152, 219, 0.5), inset 0px 5px 20px 5px rgba(52, 152, 219, 0.5);
-  border-radius: 0px;
-}
-
-#projektek #DOBOZ #GOMB svg {
-  width: 48px;
-  height: 48px;
-
-  color: #3498DB;
-  filter: drop-shadow(0px 5px 2.5px #000000);
-}
-
-#projektek #DOBOZ #GOMB span {
-  font-size: 36px;
-  color: #3498DB;
-  filter: drop-shadow(0px 5px 2.5px #000000);
-}
-
-/* hover cursor link */
-
-.db {
-  position: relative;
-}
-
-.db::after {
-  content: attr(data-url);
-  position: absolute;
-  top: -32px;
-  left: -3px;
-
-  background: rgba(127, 140, 141, 0.25);
-  border: 3px solid rgba(127, 140, 141, 0.5);
-  box-shadow: 0px 0px 20px rgba(127, 140, 141, 0.5), inset 0px 5px 20px 5px rgba(127, 140, 141, 0.5);
-  border-radius: 0px;
-
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s;
-}
-
-.db:hover::after {
-  opacity: 1;
+    .content-split {
+        flex-direction: column;
+        height: 100vh;
+    }
+    .pdf-container, .video-container {
+        flex: 1;
+        min-height: 0;
+    }
 }
