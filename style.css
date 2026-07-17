@@ -232,7 +232,8 @@ body.instant {
 
 /* Sub pages */
 #page-plc, #page-robotika, #page-vizsga {
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     padding: 0;
     flex-direction: column;
 }
@@ -241,15 +242,48 @@ body.instant {
     display: flex;
     flex: 1;
     width: 100%;
-    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
 }
 
-.pdf-container, .video-container {
-    flex: 1;
+.pdf-container {
+    width: 50vw;
+    flex-shrink: 0;
+    background-color: var(--color-1);
+    overflow: hidden;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    border-right: 1px solid var(--color-3);
+    display: flex;
+    flex-direction: column;
+}
+
+.video-container {
+    flex-grow: 1;
     background-color: var(--color-1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+/* Smooth Fullscreen (Theater Mode) */
+body.fullscreen-active {
+    overflow: hidden !important;
+}
+
+.spa-page.is-fullscreen .pdf-container {
+    margin-left: -50vw;
+    opacity: 0;
+    border: none;
+}
+
+.spa-page.is-fullscreen .video-container {
+    /* No width change needed, flex-grow fills the space smoothly */
+}
+
+.spa-page.is-fullscreen .icon-back-btn {
+    transform: translateX(-50px);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .pdf-container iframe {
@@ -435,6 +469,266 @@ html {
     opacity: 0.9;
 }
 
+
+/* --- Custom Video Player --- */
+
+.custom-player {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.custom-player video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* Big Center Play Button */
+.video-center-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    z-index: 10;
+    pointer-events: none; /* Let video capture clicks if needed, or handle in JS */
+}
+
+.video-center-play:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.video-center-play svg {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+}
+
+.custom-player.is-playing .video-center-play {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Bottom Controls Bar */
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px 10px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.custom-player:hover .video-controls,
+.custom-player.is-paused .video-controls {
+    opacity: 1;
+}
+
+/* Progress and Volume Bars */
+.progress-container, .volume-slider-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-container {
+    width: 100%;
+    height: 20px; /* Bigger hit area */
+    margin-bottom: 5px;
+}
+
+.volume-slider-container {
+    display: flex;
+    align-items: center;
+    width: 0;
+    height: 20px;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    overflow: visible;
+    margin-left: 5px;
+}
+
+.volume-container:hover .volume-slider-container {
+    width: 80px;
+    opacity: 1;
+}
+
+.progress-container::before, .volume-slider-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    transition: height 0.1s ease, top 0.1s ease;
+    top: 7.5px;
+}
+
+.progress-container:hover::before, .volume-slider-container:hover::before,
+.progress-container:hover .progress-filled, .volume-slider-container:hover .volume-filled,
+.progress-container:hover .progress-hover, .volume-slider-container:hover .volume-hover {
+    height: 8px;
+    top: 6px;
+}
+
+.progress-filled, .progress-hover, .volume-filled, .volume-hover {
+    position: absolute;
+    height: 5px;
+    top: 7.5px;
+    left: 0;
+    border-radius: 3px;
+    pointer-events: none;
+    transition: height 0.1s ease, top 0.1s ease;
+}
+
+.progress-filled {
+    background: #ff0000; /* YouTube red style */
+    z-index: 2;
+}
+
+.volume-filled {
+    background: #fff;
+    z-index: 2;
+}
+
+.progress-hover, .volume-hover {
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    width: 0;
+}
+
+.progress-bar, .volume-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    z-index: 3;
+}
+
+/* Main Controls Row */
+.controls-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.controls-main button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    padding: 5px;
+}
+
+.controls-main button:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.controls-main svg {
+    width: 24px;
+    height: 24px;
+}
+
+.time-display {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    gap: 5px;
+}
+
+.time-separator {
+    opacity: 0.7;
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.tooltip-box {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 20;
+    margin-bottom: 5px;
+}
+
+.volume-slider-container:hover .volume-tooltip {
+    opacity: 1;
+}
+
+.progress-container:hover .progress-tooltip {
+    opacity: 1;
+}
+
+.fullscreen-btn {
+    margin-left: auto; /* Push to the far right */
+}
+
+/* Slider reset styles */
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin-top: -3.5px;
+}
+input[type=range]::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
